@@ -1,6 +1,11 @@
 "use client";
 
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { CiMenuFries } from "react-icons/ci";
@@ -26,16 +31,18 @@ export default function MobileNav() {
           {/* nav */}
           <nav className="flex flex-col items-center justify-center  gap-8">
             {links.map((link) => (
-              <Link
-                href={link.href}
-                key={link.href}
-                className={`${
-                  pathName === link.href &&
-                  "text-accent border-b-2 border-accent"
-                } text-xl capitalize hover:text-accent transition-all`}
-              >
-                {link.label}
-              </Link>
+              <SheetClose asChild key={link.href}>
+                <Link
+                  href={link.href}
+                  key={link.href}
+                  className={`${
+                    pathName === link.href &&
+                    "text-accent border-b-2 border-accent"
+                  } text-xl capitalize hover:text-accent transition-all`}
+                >
+                  {link.label}
+                </Link>
+              </SheetClose>
             ))}
           </nav>
         </SheetContent>
